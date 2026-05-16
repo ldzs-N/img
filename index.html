@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乐达助手 - 专业赛事数据分析平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F4C81',
+                        secondary: '#1E88E5',
+                        accent: '#FF6B00',
+                        dark: '#1A202C',
+                        light: '#F7FAFC',
+                        success: '#10B981',
+                        danger: '#EF4444',
+                        neutral: '#64748B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+            .gradient-bg {
+                background: linear-gradient(135deg, #0F4C81 0%, #1E88E5 100%);
+            }
+            .stock-ticker {
+                animation: ticker 20s linear infinite;
+            }
+            @keyframes ticker {
+                0% { transform: translateX(100%); }
+                100% { transform: translateX(-100%); }
+            }
+            .line-clamp-2 {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-dark">
+    <!-- 顶部导航栏 -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-3">
+                <div class="flex items-center space-x-2">
+                    <div class="text-primary text-2xl font-bold">
+                        <i class="fa fa-line-chart mr-2"></i>乐达助手
+                    </div>
+                    <span class="bg-accent text-white text-xs px-2 py-1 rounded-full">v1.2.8</span>
+                </div>
+
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-primary font-medium hover:text-secondary transition-colors">首页</a>
+                    <a href="#features" class="text-gray-600 font-medium hover:text-primary transition-colors">核心优势</a>
+                    <a href="#compliance" class="text-gray-600 font-medium hover:text-primary transition-colors">合规保障</a>
+                    <a href="#experts" class="text-gray-600 font-medium hover:text-primary transition-colors">分析师团队</a>
+                    <a href="#process" class="text-gray-600 font-medium hover:text-primary transition-colors">服务流程</a>
+                    <a href="#faq" class="text-gray-600 font-medium hover:text-primary transition-colors">常见问题</a>
+                </nav>
+
+                <div class="flex items-center space-x-4">
+                    <a href="https://www.xcryzs22.cn/leda.html?aid=1234" target="_blank" class="hidden md:block bg-primary hover:bg-secondary text-white px-5 py-2 rounded-md transition-colors">
+                        <i class="fa fa-user-plus mr-2"></i>立即注册
+                    </a>
+                    <button class="md:hidden text-gray-600 text-xl">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 滚动数据条 -->
+        <div class="bg-dark text-white py-1 overflow-hidden">
+            <div class="stock-ticker whitespace-nowrap">
+                <span class="inline-block px-4"><i class="fa fa-clock-o mr-1"></i> 实时数据更新: <span class="text-success">0.3s</span> 延迟</span>
+                <span class="inline-block px-4">全球赛事覆盖: <span class="text-success">60+</span> 联赛</span>
+                <span class="inline-block px-4">数据准确率: <span class="text-success">99.98%</span></span>
+                <span class="inline-block px-4">活跃用户: <span class="text-success">500万+</span></span>
+                <span class="inline-block px-4">大神单满意度: <span class="text-success">98.4%</span></span>
+                <span class="inline-block px-4">今日赛事: <span class="text-success">23</span> 场</span>
+                <span class="inline-block px-4">正在直播: <span class="text-accent">3</span> 场</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="gradient-bg text-white py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-shadow mb-4">
+                        专业赛事分析<br>
+                        <span class="text-accent">智能数据驱动</span>决策
+                    </h1>
+                    <p class="text-xl mb-8 text-blue-100">
+                        乐达助手联合全国500+正规实体彩票网点，提供专业赛事数据分析、智能推荐和安全出票服务，让您的每一次决策都有数据支撑。
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="https://www.xcryzs22.cn/leda.html?aid=1234" target="_blank" class="bg-accent hover:bg-orange-600 text-white text-lg font-medium px-8 py-3 rounded-md transition-colors text-center">
+                            <i class="fa fa-download mr-2"></i>立即下载
+                        </a>
+                        <a href="javascript:void(0)" onclick="openModal('downloadModal')" class="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white text-lg font-medium px-8 py-3 rounded-md transition-colors text-center">
+                            <i class="fa fa-wechat mr-2"></i>联系客服
+                        </a>
+                    </div>
+                    <div class="mt-6 text-blue-100">
+                        <p class="flex items-center flex-wrap">
+                            <i class="fa fa-shield mr-2"></i>
+                            客服微信:
+                            <span class="font-mono font-bold" id="heroWechatMain">guo89663</span>
+                            <button onclick="copyToClipboard('heroWechatMain')" class="ml-2 text-blue-200 hover:text-white transition-colors">
+                                <i class="fa fa-copy"></i>
+                            </button>
+                            (备用:
+                            <span class="font-mono font-bold" id="heroWechatBackup">guo08935</span>
+                            <button onclick="copyToClipboard('heroWechatBackup')" class="ml-1 text-blue-200 hover:text-white transition-colors">
+                                <i class="fa fa-copy"></i>
+                            </button>
+                            )
+                        </p>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 shadow-2xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold">实时赛事指数</h3>
+                            <span class="text-xs bg-success/20 text-success px-2 py-1 rounded">实时更新</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-white/5 p-3 rounded">
+                                <div class="flex justify-between mb-1">
+                                    <span>巴黎圣日耳曼 vs 多特蒙德</span>
+                                    <span class="text-accent">直播中</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span>主胜 3.15</span>
+                                    <span>平 3.60</span>
+                                    <span>客胜 2.10</span>
+                                </div>
+                                <div class="mt-2 h-1 bg-gray-700 rounded-full overflow-hidden">
+                                    <div class="h-full bg-accent" style="width: 45%"></div>
+                                </div>
+                            </div>
+                            <div class="bg-white/5 p-3 rounded">
+                                <div class="flex justify-between mb-1">
+                                    <span>托特纳姆热刺 vs 阿斯顿维拉</span>
+                                    <span class="text-blue-200">22:00</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span>主胜 1.95</span>
+                                    <span>平 3.80</span>
+                                    <span>客胜 3.25</span>
+                                </div>
+                                <div class="mt-2 h-1 bg-gray-700 rounded-full overflow-hidden">
+                                    <div class="h-full bg-secondary" style="width: 55%"></div>
+                                </div>
+                            </div>
+                            <div class="bg-white/5 p-3 rounded">
+                                <div class="flex justify-between mb-1">
+                                    <span>皇家马德里 vs 阿拉维斯</span>
+                                    <span class="text-blue-200">23:45</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span>主胜 1.30</span>
+                                    <span>平 5.50</span>
+                                    <span>客胜 8.50</span>
+                                </div>
+                                <div class="mt-2 h-1 bg-gray-700 rounded-full overflow-hidden">
+                                    <div class="h-full bg-success" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心数据指标 -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center card-hover p-6 rounded-lg border border-gray-100 shadow-sm">
+                    <div class="text-4xl font-bold text-primary mb-2">60+</div>
+                    <div class="text-gray-600">全球赛事覆盖</div>
+                </div>
+                <div class="text-center card-hover p-6 rounded-lg border border-gray-100 shadow-sm">
+                    <div class="text-4xl font-bold text-primary mb-2">0.3s</div>
+                    <div class="text-gray-600">数据更新延迟</div>
+                </div>
+                <div class="text-center card-hover p-6 rounded-lg border border-gray-100 shadow-sm">
+                    <div class="text-4xl font-bold text-primary mb-2">99.98%</div>
+                    <div class="text-gray-600">数据准确率</div>
+                </div>
+                <div class="text-center card-hover p-6 rounded-lg border border-gray-100 shadow-sm">
+                    <div class="text-4xl font-bold text-primary mb-2">500万+</div>
+                    <div class="text-gray-600">活跃用户</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心优势 -->
+    <section id="features" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-dark mb-4">专业服务保障</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">四大核心优势，为您的资金安全保驾护航，让投资决策更科学、更稳健</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-store text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">正规实体店出单</h3>
+                    <p class="text-gray-600">对接线下合作实体彩站，跑腿小哥极速下单，100%真实有效，绝不参与线上非法互联网售彩。</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-camera text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">订单真实留存</h3>
+                    <p class="text-gray-600">每笔交易出单后，系统第一时间发送实体彩票高清照片。拍照留档，单号清晰可查，中奖有据可依。</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-chart-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">智能赛事分析</h3>
+                    <p class="text-gray-600">大数据全天候监控盘口和欧赔亚盘变化，智能推荐核心胆码。科学过滤低概率单，收益更稳健。</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-shield text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">隐私安全保护</h3>
+                    <p class="text-gray-600">实名绑卡保护，中奖佣金自动存管账户。极速安全兑奖，拒绝任何隐私泄露，贴心安全护航。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 平台核心优势 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-dark mb-4">平台核心优势</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">全网领先的体育分析跟单社区，比传统彩站更有粘性，比微信群推荐更科学</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-lg p-6 border-l-4 border-primary">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3">01</span>
+                        <h3 class="text-xl font-bold">专业分析师团队</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">汇聚全国数千名顶尖赛事分析达人、民间彩店店主、体坛记者。历史连红、近期盈利率完全透明公开，无法伪造修改。</p>
+                    <div class="flex items-center text-primary">
+                        <span class="font-bold mr-2">98.4%</span>
+                        <span>大神单回访满意度</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-6 border-l-4 border-secondary">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3">02</span>
+                        <h3 class="text-xl font-bold">极速出票服务</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">强大的同城跑腿骑手网络派单。单笔认购金额达到条件，即可派发合作彩票网点打印，10分钟内上传带有防伪标的高清彩票大图。</p>
+                    <div class="flex items-center text-secondary">
+                        <span class="font-bold mr-2">10分钟</span>
+                        <span>完成拍照出单</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-6 border-l-4 border-accent">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-accent text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3">03</span>
+                        <h3 class="text-xl font-bold">全自动派奖系统</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">单注低于1万元自动在APP里进行结算，奖金秒到账户；单注超过1万由客服陪同实体彩站出纳大奖。无门槛秒提款。</p>
+                    <div class="flex items-center text-accent">
+                        <span class="font-bold mr-2">1分钟</span>
+                        <span>极速提现到账</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- 合规保障体系（已修复Flask静态文件路径问题） -->
+<section id="compliance" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-dark mb-4">合规保障体系</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">全流程合规透明，多重保障让您购彩更安心</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- 01 业务闭环 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+                <div class="bg-primary/90 p-4">
+                    <h3 class="text-xl font-bold text-white">01 / 业务闭环</h3>
+                    <h4 class="text-lg font-semibold text-white">全场景跑腿出单闭环</h4>
+                </div>
+                <div class="p-6">
+                    <!-- Flask标准静态文件路径 -->
+                    <img src="图片1.jpg" alt="业务闭环流程图" class="w-full rounded-lg mb-4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="bg-gray-100 rounded-lg p-4 text-center text-gray-500 hidden">
+                        <i class="fa fa-image text-4xl mb-2"></i>
+                        <p>业务闭环流程图</p>
+                    </div>
+                    <p class="text-gray-600">对接全国具有合法代销网点的正规彩票大厅。客户在线下单、跑腿小哥线下实体出票拍照回传、拥有唯一纸质存根，真正做到每一张红单都有据可查，形成无懈可击的安全合规闭环。</p>
+                </div>
+            </div>
+
+            <!-- 02 依法纳税 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+                <div class="bg-primary/90 p-4">
+                    <h3 class="text-xl font-bold text-white">02 / 依法纳税</h3>
+                    <h4 class="text-lg font-semibold text-white">合规透明与个人所得税代扣</h4>
+                </div>
+                <div class="p-6">
+                    <!-- Flask标准静态文件路径 -->
+                    <img src="图片2.jpg" alt="依法纳税说明" class="w-full rounded-lg mb-4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="bg-gray-100 rounded-lg p-4 text-center text-gray-500 hidden">
+                        <i class="fa fa-image text-4xl mb-2"></i>
+                        <p>依法纳税说明</p>
+                    </div>
+                    <p class="text-gray-600">坚决拥护国家《彩票管理条例》，平台实行严格的实名认证与未成年人防沉迷机制。针对单笔红利超过一万元的用户，客服主动跑腿代办缴纳20%偶然所得税，并回传官方完税凭证，保障每一笔奖金绝对合法纯净。</p>
+                </div>
+            </div>
+
+            <!-- 03 权威资质 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+                <div class="bg-primary/90 p-4">
+                    <h3 class="text-xl font-bold text-white">03 / 权威资质</h3>
+                    <h4 class="text-lg font-semibold text-white">全国实体店铺牌照授权背书</h4>
+                </div>
+                <div class="p-6">
+                    <!-- Flask标准静态文件路径 -->
+                    <img src="图片3.jpg" alt="合作店铺与资质展示" class="w-full rounded-lg mb-4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="bg-gray-100 rounded-lg p-4 text-center text-gray-500 hidden">
+                        <i class="fa fa-image text-4xl mb-2"></i>
+                        <p>合作店铺与资质展示</p>
+                    </div>
+                    <p class="text-gray-600">公开展示全国合作网点真实门店实景照片与国家体育总局颁发的《中国体育彩票代销证》。代销网点编号、经营地址完全公开透明，杜绝一切虚假私彩黑盘，让彩友购彩更安心、跟单更放心。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- 分析师团队 -->
+    <section id="experts" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-dark mb-4">顶尖分析师团队</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">真实跟投大数据展示，每位分析师均需通过高额保证金实名认证</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 分析师1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+                    <div class="gradient-bg text-white p-3">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-2">
+                                    <i class="fa fa-user text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">老彩民独家预测</h3>
+                                    <p class="text-blue-100 text-xs">跟单人气榜 No.1</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xl font-bold">+142%</div>
+                                <div class="text-blue-100 text-xs">7日收益</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="grid grid-cols-3 gap-2 mb-3 text-center">
+                            <div>
+                                <div class="text-lg font-bold text-primary">4.2万</div>
+                                <div class="text-gray-500 text-xs">粉丝数</div>
+                            </div>
+                            <div>
+                                <div class="text-lg font-bold text-success">88%</div>
+                                <div class="text-gray-500 text-xs">7日命中率</div>
+                            </div>
+                            <div>
+                                <div class="text-lg font-bold text-accent">12连红</div>
+                                <div class="text-gray-500 text-xs">最佳战绩</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm italic mb-3 line-clamp-2">"近期专攻欧洲杯赛程！重点分析盘口，防范冷门，收益走势稳中求胜，速来跟单！"</p>
+                        <a href="https://www.xcryzs22.cn/leda.html?aid=1234" target="_blank" class="block w-full text-center bg-primary hover:bg-secondary text-white py-2 rounded transition-colors text-sm">
+                            立即跟单
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 分析师2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+                    <div class="bg-secondary text-white p-3">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-2">
+                                    <i class="fa fa-user text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">竞彩红单大本营</h3>
+                                    <p class="text-blue-100 text-xs">近期暴击红人</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xl font-bold">+112%</div>
+                                <div class="text-blue-100 text-xs">7日收益</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="grid grid-cols-3 gap-2 mb-3 text-center">
+                            <div>
+                                <div class="text-lg font-bold text-secondary">2.8万</div>
+                                <div class="text-gray-500 text-xs">粉丝数</div>
+                            </div>
+                            <div>
+                                <div class="text-lg font-bold text-success">82%</div>
+                                <div class="text-gray-500 text-xs">7日命中率</div>
+                            </div>
+                            <div>
+                                <div class="text-lg font-bold text-accent">8连红</div>
+                                <div class="text-gray-500 text-xs">近期走势</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm italic mb-3 line-clamp-2">"精研亚洲盘口让球，擅长从凯利指数寻找庄家漏洞。明晚有胆码推荐，速来！"</p>
+                        <a href="https://www.xcryzs22.cn/leda.html?aid=1234" target="_blank" class="block w-full text-center bg-secondary hover:bg-primary text-white py-2 rounded transition-colors text-sm">
+                            立即跟单
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 分析师3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+                    <div class="bg-accent text-white p-3">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-2">
+                                    <i class="fa fa-basketball-ball text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">NBA大小分终结者</h3>
+                                    <p class="text-orange-100 text-xs">篮球NBA红人</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xl font-bold">+94.6%</div>
+                                <div class="text-orange-100 text-xs">7日收益</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="grid grid-cols-3 gap-2 mb-3 text-center">
+                            <div>
+                                <div class="text-lg font-bold text-accent">1.9万</div>
+                                <div class="text-gray-500 text-xs">粉丝数</div>
+                            </div>
+                            <div>
+                                <div class="text-lg font-bold text-success">80%</div>
+                                <div class="text-gray-500 text-xs">7日命中率</div>
+                            </div>
+                            <div>
+                                <div class="text-lg font-bold text-accent">7连红</div>
+                                <div class="text-gray-500 text-xs">昨日全红</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm italic mb-3 line-clamp-2">"针对季后赛做超强数据建模，重点挖掘大分赔率，跟着单不迷路，稳如泰山。"</p>
+                        <a href="https://www.xcryzs22.cn/leda.html?aid=1234" target="_blank" class="block w-full text-center bg-accent hover:bg-orange-600 text-white py-2 rounded transition-colors text-sm">
+                            立即跟单
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务流程 -->
+    <section id="process" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-dark mb-4">专业服务流程</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">从代收充值到中奖兑付邮寄，每一步均有安全加密和高清影像存底</p>
+            </div>
+
+            <div class="relative">
+                <!-- 连接线 -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2 z-0"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-6 gap-6 relative z-10">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                            <i class="fa fa-credit-card"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">代收充值</h3>
+                        <p class="text-gray-600 text-sm">资金存管第三方，绝不动用一分钱</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                            <i class="fa fa-handshake-o"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">委托代理</h3>
+                        <p class="text-gray-600 text-sm">算法匹配最近的高信誉出票网点</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                            <i class="fa fa-print"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">跑腿出票</h3>
+                        <p class="text-gray-600 text-sm">实体终端机秒级完成纸质彩票印刷</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                            <i class="fa fa-camera"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">拍照留档</h3>
+                        <p class="text-gray-600 text-sm">上传实体票原件照片，打印专属水印</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                            <i class="fa fa-trophy"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">中奖代兑</h3>
+                        <p class="text-gray-600 text-sm">中小奖秒级到账，大奖陪同兑奖</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                            <i class="fa fa-truck"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">票据邮寄</h3>
+                        <p class="text-gray-600 text-sm">顺丰到付邮寄，确保完全拥有权</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 用户评价 -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-dark mb-4">用户真实评价</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">1.2万+用户的真实反馈，信誉由每一个真实中奖大单堆砌而成</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"以前在微信群里跟单太乱了，经常错过出票。用乐达助手好极了，买完直接收到高清实体彩票照片，超级有安全感，奖金结算也特别爽快！"</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center mr-3">
+                            <i class="fa fa-user text-gray-500"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium">彩民老李</div>
+                            <div class="text-gray-500 text-sm">资深用户</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"中过一次1.2万，本来担心线上没人给兑，结果乐达客服跑腿主动带身份证帮我交了20%的税，直接把1万多到手红利打我账上，靠谱！"</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center mr-3">
+                            <i class="fa fa-user text-gray-500"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium">红单飞飞</div>
+                            <div class="text-gray-500 text-sm">中奖用户</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"这个大神跟单功能绝了！我跟了'老彩民独家预测'，本周已经拿下了1.5万纯利。APP界面也很科技感，暗色调我晚上看盘一点不伤眼。"</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center mr-3">
+                            <i class="fa fa-user text-gray-500"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium">王大锤01</div>
+                            <div class="text-gray-500 text-sm">跟单用户</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section id="faq" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-dark mb-4">常见问题解答</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">您关心的问题，我们都有详细解答</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto">
+                <div class="space-y-4">
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full flex justify-between items-center p-4 text-left font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                            <span>乐达助手平台出票真的是合法的实体店出彩吗？</span>
+                            <i class="fa fa-chevron-down text-gray-500"></i>
+                        </button>
+                        <div class="p-4 border-t border-gray-200">
+                            <p class="text-gray-600">绝对100%真实。乐达助手严格执行国家有关《彩票管理条例》，我们是一家专注于跑腿委托服务的平台，对接全国几十家具有合法网点的正规实体彩票代销点。每一笔支付均有店内跑腿印刷真实实体彩票，并拍照回传系统作为存根，客户对原票拥有所有权。</p>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full flex justify-between items-center p-4 text-left font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                            <span>APP中奖后怎么派奖，安全有保障吗？</span>
+                            <i class="fa fa-chevron-down text-gray-500"></i>
+                        </button>
+                        <div class="p-4 border-t border-gray-200">
+                            <p class="text-gray-600">单票中奖金额在一万元（不含）以下的订单，彩店网点代为兑奖并将中奖奖金秒级转入您的APP钱包余额。您可以直接实名绑定银行卡进行提现，1分钟内提现到账。大奖如果超过一万，我们会派金牌客服陪同您带上纸质彩票亲自去当地彩票中心兑奖。</p>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full flex justify-between items-center p-4 text-left font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                            <span>大神跟单的命中率是真的吗？有水分吗？</span>
+                            <i class="fa fa-chevron-down text-gray-500"></i>
+                        </button>
+                        <div class="p-4 border-t border-gray-200">
+                            <p class="text-gray-600">我们的大数据记录系统是完全透明并由系统数据库锁定的。每位红单分析大神发布的实测推荐，一旦截止出票，数据即写入链上，不允许任何人为补单、改单或删除黑单。黑红完全透明，胜率是经过十万人共同监督的绝对真实数据。</p>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full flex justify-between items-center p-4 text-left font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                            <span>iOS系统怎么下载安装？会有闪退限制吗？</span>
+                            <i class="fa fa-chevron-down text-gray-500"></i>
+                        </button>
+                        <div class="p-4 border-t border-gray-200">
+                            <p class="text-gray-600">iOS用户可以通过添加微信获取"TF开发者内测版"或"企业定制版"。安装前需要信任专属描述文件。我们的技术团队24小时监控并更换企业高信誉证书，并支持TestFlight永不闪退模式，彻底解决苹果用户闪退的烦恼。</p>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full flex justify-between items-center p-4 text-left font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                            <span>乐达助手APP怎么下载注册？</span>
+                            <i class="fa fa-chevron-down text-gray-500"></i>
+                        </button>
+                        <div class="p-4 border-t border-gray-200">
+                            <p class="text-gray-600 mb-2">目前APP的下载和注册必须通过专属进店码扫码完成，流程如下：</p>
+                            <ol class="list-decimal list-inside text-gray-600 space-y-1">
+                                <li>复制客服微信：<span class="font-mono font-bold">guo89663</span>（备用：<span class="font-mono font-bold">guo08935</span>）</li>
+                                <li>添加好友并备注：【乐达助手】通过最快</li>
+                                <li>索取进店码，注册好后发用户名给客服</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载区域 -->
+    <section class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-6">立即开启专业观赛新体验</h2>
+                <p class="text-xl mb-8 text-blue-100">添加客服微信，获取乐达助手专属注册通道。一对一安装指导，3分钟快速上手，随时随地掌握全球赛事动态。</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white/10 backdrop-blur-md rounded-lg p-6">
+                        <div class="flex items-center justify-center mb-4">
+                            <i class="fa fa-android text-4xl mr-3"></i>
+                            <div class="text-left">
+                                <div class="font-bold text-lg">Android 安卓版</div>
+                                <div class="text-blue-100 text-sm">v1.2.8 最新版</div>
+                            </div>
+                        </div>
+                        <a href="https://www.xcryzs22.cn/leda.html?aid=1234" target="_blank" class="block w-full bg-white text-primary font-medium py-2 rounded transition-colors hover:bg-gray-100">
+                            立即下载
+                        </a>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-md rounded-lg p-6">
+                        <div class="flex items-center justify-center mb-4">
+                            <i class="fa fa-apple text-4xl mr-3"></i>
+                            <div class="text-left">
+                                <div class="font-bold text-lg">iOS 苹果版</div>
+                                <div class="text-blue-100 text-sm">TestFlight 永不闪退</div>
+                            </div>
+                        </div>
+                        <a href="https://www.xcryzs22.cn/leda.html?aid=1234" target="_blank" class="block w-full bg-white text-primary font-medium py-2 rounded transition-colors hover:bg-gray-100">
+                            立即下载
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8">
+                    <div class="flex items-center">
+                        <i class="fa fa-check-circle mr-2"></i>
+                        <span>官方渠道引入</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fa fa-check-circle mr-2"></i>
+                        <span>一对一专业指导</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fa fa-check-circle mr-2"></i>
+                        <span>安卓/苹果通用</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fa fa-check-circle mr-2"></i>
+                        <span>7×24小时客服</span>
+                    </div>
+                </div>
+
+                <div class="mt-8 p-4 bg-white/10 backdrop-blur-md rounded-lg inline-block">
+                    <p class="text-lg">客服微信：<span class="font-mono font-bold text-accent">guo89663</span>（备用：<span class="font-mono font-bold">guo08935</span>）</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="text-2xl font-bold mb-4">
+                        <i class="fa fa-line-chart mr-2"></i>乐达助手
+                    </div>
+                    <p class="text-gray-400 mb-4">专注于为体育爱好者提供专业、及时、准确的赛事数据服务，让每一次观察都更专业、更尽兴。</p>
+                    <div class="flex space-x-4">
+                        <a href="javascript:void(0)" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-wechat text-xl"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-weibo text-xl"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-qq text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors">核心优势</a></li>
+                        <li><a href="#compliance" class="text-gray-400 hover:text-white transition-colors">合规保障</a></li>
+                        <li><a href="#experts" class="text-gray-400 hover:text-white transition-colors">分析师团队</a></li>
+                        <li><a href="#process" class="text-gray-400 hover:text-white transition-colors">服务流程</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white transition-colors">常见问题</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-4">赛事覆盖</h3>
+                    <ul class="space-y-2">
+                        <li><a href="javascript:void(0)" class="text-gray-400 hover:text-white transition-colors">足球赛事</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-400 hover:text-white transition-colors">篮球赛事</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-400 hover:text-white transition-colors">大乐透</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-400 hover:text-white transition-colors">七星彩</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-400 hover:text-white transition-colors">排列三/五</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-4">联系我们</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fa fa-wechat mr-2"></i>
+                            <span>客服微信：</span>
+                            <span class="font-mono" id="footerWechatMain">guo89663</span>
+                            <button onclick="copyToClipboard('footerWechatMain')" class="ml-2 text-gray-500 hover:text-white transition-colors">
+                                <i class="fa fa-copy"></i>
+                            </button>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fa fa-wechat mr-2"></i>
+                            <span>备用微信：</span>
+                            <span class="font-mono" id="footerWechatBackup">guo08935</span>
+                            <button onclick="copyToClipboard('footerWechatBackup')" class="ml-2 text-gray-500 hover:text-white transition-colors">
+                                <i class="fa fa-copy"></i>
+                            </button>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fa fa-clock-o mr-2"></i>
+                            <span>7×24小时在线服务</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-500 text-sm">
+                <p class="mb-2">温馨提示：中国体育彩票 包中奖是骗局切勿听信理性选择</p>
+                <p>页面数据仅供查看，不能做为开奖凭证。乐达助手仅提供赛事数据分析服务，不参与任何形式的彩票销售。</p>
+                <p class="mt-2">© 2025 乐达助手 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 联系客服弹窗 -->
+    <div id="downloadModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg shadow-2xl max-w-md w-full mx-4 transform transition-all scale-95 opacity-0" id="downloadModalContent">
+            <div class="gradient-bg text-white p-6 rounded-t-lg">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-bold">联系客服</h3>
+                    <button onclick="closeModal('downloadModal')" class="text-white hover:text-gray-200">
+                        <i class="fa fa-times text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6">
+                <p class="text-gray-600 mb-4">如有任何问题，请添加客服微信咨询，我们将为您提供7×24小时专业服务：</p>
+                <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm text-gray-500">主号微信</p>
+                            <p class="text-xl font-mono font-bold text-primary" id="wechatMain">guo89663</p>
+                        </div>
+                        <button onclick="copyToClipboard('wechatMain')" class="bg-primary hover:bg-secondary text-white px-4 py-2 rounded transition-colors">
+                            <i class="fa fa-copy mr-1"></i>复制
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm text-gray-500">备用微信</p>
+                            <p class="text-xl font-mono font-bold text-primary" id="wechatBackup">guo08935</p>
+                        </div>
+                        <button onclick="copyToClipboard('wechatBackup')" class="bg-primary hover:bg-secondary text-white px-4 py-2 rounded transition-colors">
+                            <i class="fa fa-copy mr-1"></i>复制
+                        </button>
+                    </div>
+                </div>
+                <div class="space-y-2 text-sm text-gray-600">
+                    <p><i class="fa fa-check text-success mr-2"></i>添加好友备注【乐达助手】通过最快</p>
+                    <p><i class="fa fa-check text-success mr-2"></i>客服将发送最新的Android安装包与iOS尊享版链接</p>
+                    <p><i class="fa fa-check text-success mr-2"></i>提供1对1专业安装指导，3分钟快速上手</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 复制成功提示 -->
+    <div id="copyToast" class="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-dark text-white px-6 py-3 rounded-lg shadow-lg z-50 opacity-0 transition-opacity duration-300">
+        <i class="fa fa-check-circle mr-2"></i>客服微信已复制到剪贴板
+    </div>
+
+    <!-- 浮动客服按钮 -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <a href="javascript:void(0)" onclick="openModal('downloadModal')" class="w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center text-white shadow-lg transition-colors">
+            <i class="fa fa-wechat text-2xl"></i>
+        </a>
+    </div>
+
+    <script>
+        // 打开弹窗
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const modalContent = document.getElementById(modalId + 'Content');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        // 关闭弹窗
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const modalContent = document.getElementById(modalId + 'Content');
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // 复制到剪贴板（支持所有位置的复制）
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                // 显示复制成功提示
+                const toast = document.getElementById('copyToast');
+                toast.classList.remove('opacity-0');
+                toast.classList.add('opacity-100');
+                setTimeout(() => {
+                    toast.classList.remove('opacity-100');
+                    toast.classList.add('opacity-0');
+                }, 2000);
+            }).catch(err => {
+                // 降级方案：创建临时输入框
+                const tempInput = document.createElement('input');
+                tempInput.value = text;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+
+                // 显示复制成功提示
+                const toast = document.getElementById('copyToast');
+                toast.classList.remove('opacity-0');
+                toast.classList.add('opacity-100');
+                setTimeout(() => {
+                    toast.classList.remove('opacity-100');
+                    toast.classList.add('opacity-0');
+                }, 2000);
+            });
+        }
+
+        // 点击弹窗外部关闭
+        document.getElementById('downloadModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal('downloadModal');
+            }
+        });
+
+        // 初始化页面功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ折叠功能
+            const faqButtons = document.querySelectorAll('#faq button');
+            faqButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+
+                    // 切换内容显示/隐藏
+                    if (content.style.display === 'none' || content.style.display === '') {
+                        content.style.display = 'block';
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        content.style.display = 'none';
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+
+            // 默认隐藏所有FAQ内容
+            document.querySelectorAll('#faq button + div').forEach(div => {
+                div.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
